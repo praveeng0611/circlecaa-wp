@@ -449,7 +449,7 @@
     <div class="cta-inner">
       <p class="section-label">Be Part of the Change</p>
       <h2>Join Your Circle Today</h2>
-      <p>Whether you want to volunteer, become a founder member, donate, or simply attend our events — there's a place for everyone in Circle CAA.</p>
+      <p>Whether you want to volunteer, become a founder member, donate, or simply attend our events — there\'s a place for everyone in Circle CAA.</p>
       <div class="cta-actions">
         <a href="https://forms.gle/tkfV8Ab3CF9Hhk5W9" target="_blank" class="btn btn-primary">🌿 Join Now (Free)</a>
         <a href="<?php echo esc_url( home_url('/get-involved') ); ?>" class="btn btn-outline">How to Get Involved</a>

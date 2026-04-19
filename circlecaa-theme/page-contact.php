@@ -21,7 +21,7 @@ $address = circlecaa_get_address();
     <!-- Contact Info -->
     <div>
       <h2 style="color:#1a3a7a;font-size:1.6rem;margin-bottom:8px;">Get In Touch</h2>
-      <p style="color:#64748b;line-height:1.7;margin-bottom:36px;">Whether you want to join our community, partner with us, or simply learn more about our work — we're happy to connect.</p>
+      <p style="color:#64748b;line-height:1.7;margin-bottom:36px;">Whether you want to join our community, partner with us, or simply learn more about our work — we\'re happy to connect.</p>
 
       <div style="display:flex;flex-direction:column;gap:20px;margin-bottom:36px;">
         <?php

@@ -169,7 +169,7 @@ get_header(); ?>
 <section style="padding:64px 0;background:#f0fdf4;text-align:center;">
   <div class="container">
     <h2 style="color:#1a3a7a;margin-bottom:12px;">Ready to Join Our Circle?</h2>
-    <p style="color:#64748b;max-width:480px;margin:0 auto 28px;">Be part of a growing community that's making a real difference in Rajsamand.</p>
+    <p style="color:#64748b;max-width:480px;margin:0 auto 28px;">Be part of a growing community that\'s making a real difference in Rajsamand.</p>
     <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
       <a href="<?php echo esc_url( home_url('/get-involved') ); ?>" class="btn btn-primary" style="padding:14px 32px;">Get Involved</a>
       <a href="<?php echo esc_url( home_url('/contact') ); ?>" class="btn btn-outline" style="padding:14px 32px;">Contact Us</a>

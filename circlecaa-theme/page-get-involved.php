@@ -7,7 +7,7 @@ get_header(); ?>
 <section class="page-hero">
   <div class="container">
     <h1>Get Involved</h1>
-    <p>There are many ways to support Circle CAA's mission — find yours</p>
+    <p>There are many ways to support Circle CAA\'s mission — find yours</p>
   </div>
 </section>
 
@@ -107,7 +107,7 @@ get_header(); ?>
     <div style="background:linear-gradient(135deg,#1a3a7a,#16a34a);border-radius:24px;padding:48px 36px;text-align:center;color:#fff;">
       <div style="font-size:64px;margin-bottom:20px;">✨</div>
       <h3 style="color:#fff;font-size:1.5rem;margin-bottom:12px;">Ready to Join?</h3>
-      <p style="opacity:.9;line-height:1.7;margin-bottom:28px;">Fill in our quick volunteer registration form and we'll be in touch within 48 hours.</p>
+      <p style="opacity:.9;line-height:1.7;margin-bottom:28px;">Fill in our quick volunteer registration form and we\'ll be in touch within 48 hours.</p>
 
       <a href="https://forms.gle/tkfV8Ab3CF9Hhk5W9" target="_blank" rel="noopener"
          style="display:inline-block;background:#fff;color:#1a3a7a;font-weight:800;font-size:16px;padding:16px 40px;border-radius:12px;text-decoration:none;transition:transform .2s;"
@@ -142,7 +142,7 @@ get_header(); ?>
     <div style="max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:16px;">
       <?php
       $faqs = array(
-        array( 'q' => 'Do I need prior experience to volunteer?', 'a' => 'Not at all! We welcome everyone — students, professionals, homemakers, retirees. If you have enthusiasm and a willingness to help, you're already qualified.' ),
+        array( 'q' => 'Do I need prior experience to volunteer?', 'a' => 'Not at all! We welcome everyone — students, professionals, homemakers, retirees. If you have enthusiasm and a willingness to help, you\'re already qualified.' ),
         array( 'q' => 'How much time do I need to commit?', 'a' => 'It's entirely flexible. You can volunteer for a single event or become a regular member. We have opportunities ranging from a few hours to ongoing weekly engagement.' ),
         array( 'q' => 'Can schools and colleges partner with Circle CAA?', 'a' => 'Absolutely. We actively partner with educational institutions for quiz competitions, environmental programmes and awareness drives. Contact us to discuss possibilities.' ),
         array( 'q' => 'Is Circle CAA open to people outside Rajsamand?', 'a' => 'Yes! While our primary activities are in Rajsamand, we welcome supporters from anywhere in India. Digital volunteering — content, design, outreach — is also available.' ),

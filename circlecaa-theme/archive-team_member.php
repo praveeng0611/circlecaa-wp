@@ -3,7 +3,7 @@
 <section class="page-hero">
   <div class="container">
     <h1>Our Team</h1>
-    <p>Meet the passionate individuals driving Circle CAA's mission forward</p>
+    <p>Meet the passionate individuals driving Circle CAA\'s mission forward</p>
   </div>
 </section>
 
@@ -62,7 +62,7 @@
         array( 'name' => 'Priya Sharma', 'role' => 'Programme Coordinator', 'bio' => 'Coordinates our events, workshops and awareness campaigns. Brings enthusiasm and organisation to every Circle CAA initiative.', 'initials' => 'PS', 'color' => '#7c3aed' ),
         array( 'name' => 'Rajesh Kumar', 'role' => 'Cultural Secretary', 'bio' => 'Manages our Kavi Samelan, debate competitions and cultural events. A poet and debater himself, he brings authenticity to our programmes.', 'initials' => 'RK', 'color' => '#ea580c' ),
         array( 'name' => 'Anita Meena', 'role' => 'Volunteer Head', 'bio' => 'Leads and nurtures our volunteer community, ensuring every member finds their role and contributes meaningfully to our cause.', 'initials' => 'AM', 'color' => '#0891b2' ),
-        array( 'name' => 'Vikram Singh', 'role' => 'Social Media & Outreach', 'bio' => 'Amplifies Circle CAA's message across digital platforms and builds partnerships with schools, colleges and local organisations.', 'initials' => 'VS', 'color' => '#be185d' ),
+        array( 'name' => 'Vikram Singh', 'role' => 'Social Media & Outreach', 'bio' => 'Amplifies Circle CAA\'s message across digital platforms and builds partnerships with schools, colleges and local organisations.', 'initials' => 'VS', 'color' => '#be185d' ),
       );
       foreach ( $sample_team as $member ) :
       ?>
