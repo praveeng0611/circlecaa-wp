@@ -20,12 +20,10 @@
         <?php if ( has_custom_logo() ) : ?>
           <?php the_custom_logo(); ?>
         <?php else : ?>
-          <div style="width:52px;height:52px;background:linear-gradient(135deg,#1a3a7a,#16a34a);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:18px;">C</div>
+          <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/logo.png' ); ?>"
+               alt="<?php bloginfo('name'); ?>"
+               style="height:52px;width:auto;display:block;">
         <?php endif; ?>
-        <div class="logo-text">
-          <span class="site-name"><?php bloginfo( 'name' ); ?></span>
-          <span class="site-tagline"><?php bloginfo( 'description' ); ?></span>
-        </div>
       </a>
 
       <!-- Desktop Navigation -->

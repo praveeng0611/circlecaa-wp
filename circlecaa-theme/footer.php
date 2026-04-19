@@ -11,7 +11,9 @@
           <?php if ( has_custom_logo() ) : ?>
             <?php the_custom_logo(); ?>
           <?php else : ?>
-            <div style="width:48px;height:48px;background:linear-gradient(135deg,#2563eb,#16a34a);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:18px;">C</div>
+            <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/logo.png' ); ?>"
+                 alt="<?php bloginfo('name'); ?>"
+                 style="height:48px;width:auto;display:block;filter:brightness(0) invert(1);">
           <?php endif; ?>
           <div>
             <div class="brand-name"><?php bloginfo( 'name' ); ?></div>
