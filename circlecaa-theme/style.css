@@ -529,9 +529,15 @@ ul { list-style: none; }
 /* ─── Gallery Section ───────────────────────────────────────── */
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 16px;
-  margin-top: 48px;
+  margin-top: 0;
+}
+@media (max-width: 900px) {
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 540px) {
+  .gallery-grid { grid-template-columns: 1fr; }
 }
 .gallery-item {
   border-radius: var(--radius);
@@ -558,7 +564,8 @@ ul { list-style: none; }
   padding: 16px;
 }
 .gallery-item:hover .gallery-overlay { opacity: 1; }
-.gallery-overlay p { color: var(--white); font-size: 14px; font-weight: 600; }
+.gallery-overlay p,
+.gallery-overlay span { color: var(--white); font-size: 14px; font-weight: 600; }
 
 /* ─── Causes / Campaigns ─────────────────────────────────────── */
 .causes-grid {

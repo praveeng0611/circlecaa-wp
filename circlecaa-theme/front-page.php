@@ -50,11 +50,9 @@
         if ( $about_img ) : ?>
           <img src="<?php echo esc_url($about_img); ?>" alt="Circle CAA Community" style="width:100%;border-radius:20px;height:480px;object-fit:cover;">
         <?php else : ?>
-          <div style="width:100%;height:480px;background:linear-gradient(135deg,#eff6ff,#dcfce7);border-radius:20px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;">
-            <div style="font-size:80px;">🌿</div>
-            <p style="color:#475569;font-weight:600;font-size:16px;">Add a community photo here</p>
-            <p style="color:#94a3b8;font-size:13px;">Upload via WordPress Customizer</p>
-          </div>
+          <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/events/event-05.jpg' ); ?>"
+               alt="Circle CAA Community Gathering"
+               style="width:100%;border-radius:20px;height:480px;object-fit:cover;">
         <?php endif; ?>
         <div class="about-badge">
           <div class="about-badge-icon">🏆</div>
@@ -383,6 +381,66 @@
           </div>
         </div>
       <?php endforeach; ?>
+    </div>
+  </div>
+</section>
+
+<!-- ── GALLERY PREVIEW ─────────────────────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <div class="text-center" style="margin-bottom:40px;">
+      <p class="section-label">In Pictures</p>
+      <h2 class="section-title">Circle CAA in Action</h2>
+      <p class="section-desc" style="margin:0 auto;">A glimpse of our events, drives and community gatherings across Rajsamand.</p>
+    </div>
+
+    <?php
+    // Try to load gallery from gallery_album CPT first
+    $gal_query = new WP_Query( array( 'post_type' => 'gallery_album', 'posts_per_page' => 6 ) );
+    if ( $gal_query->have_posts() ) :
+    ?>
+    <div class="gallery-grid">
+      <?php while ( $gal_query->have_posts() ) : $gal_query->the_post(); ?>
+        <div class="gallery-item">
+          <?php if ( has_post_thumbnail() ) : ?>
+            <?php the_post_thumbnail( 'medium_large', array( 'style' => 'width:100%;height:260px;object-fit:cover;border-radius:12px;display:block;' ) ); ?>
+          <?php else : ?>
+            <div style="width:100%;height:260px;background:linear-gradient(135deg,#eff6ff,#dcfce7);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:48px;">📸</div>
+          <?php endif; ?>
+          <div class="gallery-overlay">
+            <span><?php the_title(); ?></span>
+          </div>
+        </div>
+      <?php endwhile; wp_reset_postdata(); ?>
+    </div>
+
+    <?php else : // Fallback: theme event images ?>
+    <div class="gallery-grid">
+      <?php
+      $gallery_items = array(
+        array( 'event-01.jpg', 'Kavi Samelan & Poetry Evening' ),
+        array( 'event-02.jpg', 'Open Mic Performance Night' ),
+        array( 'event-03.jpg', 'Tree Plantation Drive' ),
+        array( 'event-04.jpg', 'Quiz & Debate Competition' ),
+        array( 'event-05.jpg', 'Community Gathering' ),
+        array( 'event-06.jpg', 'Wellness Camp & Yoga' ),
+      );
+      foreach ( $gallery_items as $gi ) : ?>
+        <div class="gallery-item">
+          <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/events/' . $gi[0] ); ?>"
+               alt="<?php echo esc_attr( $gi[1] ); ?>"
+               style="width:100%;height:260px;object-fit:cover;border-radius:12px;display:block;"
+               loading="lazy">
+          <div class="gallery-overlay">
+            <span><?php echo esc_html( $gi[1] ); ?></span>
+          </div>
+        </div>
+      <?php endforeach; ?>
+    </div>
+    <?php endif; ?>
+
+    <div style="text-align:center;margin-top:32px;">
+      <a href="<?php echo esc_url( home_url('/gallery') ); ?>" class="btn btn-blue">View Full Gallery →</a>
     </div>
   </div>
 </section>
