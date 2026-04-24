@@ -132,8 +132,8 @@ function circlecaa_register_cpts() {
         'public'      => true,
         'supports'    => array( 'title', 'editor', 'thumbnail' ),
         'menu_icon'   => 'dashicons-images-alt2',
-        'has_archive' => true,
-        'rewrite'     => array( 'slug' => 'gallery' ),
+        'has_archive' => false,
+        'rewrite'     => array( 'slug' => 'albums' ),
         'show_in_rest' => true,
     ) );
 }
