@@ -99,7 +99,7 @@ function circlecaa_register_cpts() {
         'public'      => true,
         'supports'    => array( 'title', 'editor', 'thumbnail', 'custom-fields' ),
         'menu_icon'   => 'dashicons-groups',
-        'has_archive' => false,
+        'has_archive' => true,
         'rewrite'     => array( 'slug' => 'team' ),
         'show_in_rest' => true,
     ) );
