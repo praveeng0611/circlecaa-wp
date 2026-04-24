@@ -501,6 +501,80 @@
   </div>
 </section>
 
+<!-- ── SPONSORS ──────────────────────────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <div class="text-center" style="margin-bottom:40px;">
+      <p class="section-label">Our Supporters</p>
+      <h2 class="section-title">Sponsors &amp; Partners</h2>
+      <p class="section-desc" style="margin:0 auto;">Local businesses that believe in community — show your Circle CAA membership for exclusive discounts.</p>
+    </div>
+
+    <?php
+    $sp_query = new WP_Query( array(
+      'post_type'      => 'sponsor',
+      'posts_per_page' => 8,
+      'orderby'        => 'menu_order',
+      'order'          => 'ASC',
+    ) );
+    ?>
+
+    <?php if ( $sp_query->have_posts() ) : ?>
+      <div class="sponsors-strip">
+        <?php while ( $sp_query->have_posts() ) : $sp_query->the_post();
+          $link     = get_post_meta( get_the_ID(), '_sponsor_link', true );
+          $place    = get_post_meta( get_the_ID(), '_sponsor_place', true );
+          $discount = get_post_meta( get_the_ID(), '_sponsor_discount', true );
+          $tag_start = $link ? '<a href="' . esc_url($link) . '" target="_blank" rel="noopener" class="sponsor-strip-card">' : '<div class="sponsor-strip-card">';
+          $tag_end   = $link ? '</a>' : '</div>';
+          echo $tag_start;
+        ?>
+          <div class="sponsor-strip-logo">
+            <?php if ( has_post_thumbnail() ) : ?>
+              <?php the_post_thumbnail( 'thumbnail', array( 'alt' => get_the_title() ) ); ?>
+            <?php else : ?>
+              <span class="sponsor-strip-initial"><?php echo mb_strtoupper( mb_substr( get_the_title(), 0, 1 ) ); ?></span>
+            <?php endif; ?>
+          </div>
+          <div class="sponsor-strip-info">
+            <span class="sponsor-strip-name"><?php the_title(); ?></span>
+            <?php if ( $place ) : ?><span class="sponsor-strip-place"><i class="fas fa-map-marker-alt"></i> <?php echo esc_html($place); ?></span><?php endif; ?>
+            <?php if ( $discount ) : ?><span class="sponsor-strip-discount"><?php echo esc_html($discount); ?></span><?php endif; ?>
+          </div>
+        <?php echo $tag_end; endwhile; wp_reset_postdata(); ?>
+      </div>
+
+    <?php else : ?>
+      <!-- Fallback static sponsors -->
+      <div class="sponsors-strip">
+        <?php
+        $fallback = [
+          ['Kelwa Restaurant', 'Rajsamand', '10% off for members'],
+          ['Saatvik – The Meet zOne', 'Rajsamand', 'Special event pricing'],
+          ['Khushi Mehndi', 'Rajsamand', '15% off bridal packages'],
+          ['Money Roots', 'Rajsamand', 'Free first consultation'],
+        ];
+        foreach ( $fallback as $fs ) : ?>
+          <div class="sponsor-strip-card">
+            <div class="sponsor-strip-logo">
+              <span class="sponsor-strip-initial"><?php echo mb_strtoupper( mb_substr( $fs[0], 0, 1 ) ); ?></span>
+            </div>
+            <div class="sponsor-strip-info">
+              <span class="sponsor-strip-name"><?php echo esc_html($fs[0]); ?></span>
+              <span class="sponsor-strip-place"><i class="fas fa-map-marker-alt"></i> <?php echo esc_html($fs[1]); ?></span>
+              <span class="sponsor-strip-discount"><?php echo esc_html($fs[2]); ?></span>
+            </div>
+          </div>
+        <?php endforeach; ?>
+      </div>
+    <?php endif; ?>
+
+    <div style="text-align:center;margin-top:36px;">
+      <a href="<?php echo esc_url( home_url('/our-sponsors') ); ?>" class="btn btn-blue">View All Sponsors →</a>
+    </div>
+  </div>
+</section>
+
 <!-- ── CTA ─────────────────────────────────────────────────────── -->
 <section class="cta-section">
   <div class="container">
