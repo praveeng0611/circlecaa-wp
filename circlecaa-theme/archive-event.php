@@ -12,8 +12,8 @@
   <!-- Filter tabs (upcoming / past) -->
   <div style="display:flex;gap:12px;margin-bottom:40px;flex-wrap:wrap;">
     <?php
-    $filter = isset( $_GET['filter'] ) ? sanitize_text_field( $_GET['filter'] ) : 'upcoming';
-    $tabs = array( 'upcoming' => 'Upcoming', 'past' => 'Past Events', 'all' => 'All Events' );
+    $filter = isset( $_GET['filter'] ) ? sanitize_text_field( $_GET['filter'] ) : 'all';
+    $tabs = array( 'all' => 'All Events', 'past' => 'Past Events', 'upcoming' => 'Upcoming' );
     foreach ( $tabs as $key => $label ) :
       $active = $filter === $key;
       ?>
@@ -31,7 +31,7 @@
 
   $args = array(
     'post_type'      => 'event',
-    'posts_per_page' => 12,
+    'posts_per_page' => 50,
     'orderby'        => 'meta_value',
     'meta_key'       => '_event_date',
     'order'          => $filter === 'past' ? 'DESC' : 'ASC',
