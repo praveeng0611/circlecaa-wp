@@ -13,20 +13,6 @@ get_header(); ?>
 
 <div class="container" style="padding-top:60px;padding-bottom:80px;">
 
-  <!-- Category filter tabs -->
-  <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-bottom:48px;">
-    <?php
-    $filters = array( 'All', 'Environment', 'Culture & Arts', 'Education', 'Wellness', 'Community', 'Awareness' );
-    foreach ( $filters as $f ) : ?>
-      <button
-        class="gallery-filter-btn<?php echo $f === 'All' ? ' active' : ''; ?>"
-        data-filter="<?php echo esc_attr( strtolower( str_replace( ' ', '-', $f ) ) ); ?>"
-        style="background:<?php echo $f === 'All' ? '#1a3a7a' : '#fff'; ?>;color:<?php echo $f === 'All' ? '#fff' : '#1a3a7a'; ?>;border:2px solid #1a3a7a;border-radius:24px;padding:8px 20px;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;">
-        <?php echo esc_html( $f ); ?>
-      </button>
-    <?php endforeach; ?>
-  </div>
-
   <?php
   // Try to get gallery albums from CPT
   $gal_query = new WP_Query( array(
@@ -55,8 +41,85 @@ get_header(); ?>
 
   <?php else : ?>
 
-    <!-- Fallback: built-in event images in a masonry-style grid -->
-    <div id="gallery-grid" style="columns:3 300px;column-gap:16px;">
+  <!-- ══ Section 1: Poetry Open Mic at Saatvik ══════════════════════ -->
+  <div style="margin-bottom:72px;">
+
+    <div style="display:flex;align-items:center;gap:16px;margin-bottom:32px;">
+      <div style="flex:1;height:2px;background:linear-gradient(to right,#1a3a7a,transparent);"></div>
+      <div style="text-align:center;">
+        <span style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#16a34a;display:block;">Saatvik – The Meet zOne</span>
+        <h2 style="font-size:24px;font-weight:800;color:#0d2149;margin:6px 0 0;">Poetry Open Mic — April 2026</h2>
+      </div>
+      <div style="flex:1;height:2px;background:linear-gradient(to left,#1a3a7a,transparent);"></div>
+    </div>
+
+    <div style="columns:3 280px;column-gap:16px;">
+      <?php
+      $saatvik_items = array(
+        array( 'poetry-01.jpg', 'Poetry Open Mic — Audience', 'A captivated audience soaking in the poetry and music at Saatvik – The Meet zOne, April 2026.' ),
+        array( 'poetry-02.jpg', 'Poetry Open Mic — On Stage', 'A performer takes the mic — shayari, spoken word, and raw expression fill the open air.' ),
+        array( 'poetry-03.jpg', 'Poetry Open Mic — Live Music', 'Live music blending with poetry as a vocalist performs at the open stage evening.' ),
+        array( 'poetry-04.jpg', 'Poetry Open Mic — Evening Stage', 'The stage lit up for the Poetry Open Mic — a warm outdoor venue under the evening sky.' ),
+        array( 'poetry-05.jpg', 'Poetry Open Mic — Full House', 'A packed gathering of poetry lovers enjoying an evening of words, music and community.' ),
+        array( 'poetry-06.jpg', 'Poetry Open Mic — Keyboard Performance', 'A musician performs on keyboard at the open mic, blending melody with heartfelt expression.' ),
+        array( 'poetry-07.jpg', 'Poetry Open Mic — Female Performer', 'A young woman delivers her poem on stage — confident, powerful, and deeply moving.' ),
+        array( 'poetry-08.jpg', 'Poetry Open Mic — Host on Stage', 'The evening host welcomes the audience and performers to yet another memorable open stage night.' ),
+        array( 'poetry-09.jpg', 'Poetry Open Mic — Night Vibes', 'The audience soaks in the evening atmosphere at Saatvik during the Poetry Open Mic.' ),
+        array( 'poetry-10.jpg', 'Poetry Open Mic — Performer Close-up', 'Passion and expression — a performer delivers shayari with intensity at the open stage.' ),
+        array( 'poetry-11.jpg', 'Poetry Open Mic — Venue Setup', 'The venue prepared and ready before the doors open for the Poetry Open Mic event.' ),
+        array( 'poetry-12.jpg', 'Poetry Open Mic — Stage Moments', 'Raw emotion, powerful words, and artistic performance fill the stage.' ),
+        array( 'poetry-13.jpg', 'Poetry Open Mic — Open Stage', 'The open mic stage welcomes all voices — poetry, music, stories — in the spirit of creative freedom.' ),
+      );
+      $hs = array( '300px','260px','340px','280px','320px','260px','300px','340px','280px','320px','260px','300px','280px' );
+      foreach ( $saatvik_items as $si => $item ) :
+        $h = $hs[ $si % count($hs) ];
+      ?>
+        <div style="break-inside:avoid;margin-bottom:16px;border-radius:16px;overflow:hidden;position:relative;cursor:pointer;"
+             onclick="document.getElementById('lb-s-<?php echo $si; ?>').style.display='flex'">
+          <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/events/' . $item[0] ); ?>"
+               alt="<?php echo esc_attr( $item[1] ); ?>"
+               style="width:100%;height:<?php echo $h; ?>;object-fit:cover;display:block;transition:transform .4s ease;"
+               loading="lazy"
+               onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='none'">
+          <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(13,33,73,0.85) 0%,transparent 70%);padding:20px 16px 14px;opacity:0;transition:opacity .3s;"
+               onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0'">
+            <p style="color:#fff;font-size:14px;font-weight:700;margin:0;"><?php echo esc_html( $item[1] ); ?></p>
+          </div>
+        </div>
+        <div id="lb-s-<?php echo $si; ?>"
+             style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.92);align-items:center;justify-content:center;padding:24px;"
+             onclick="this.style.display='none'">
+          <div style="max-width:900px;width:100%;" onclick="event.stopPropagation()">
+            <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/events/' . $item[0] ); ?>"
+                 alt="<?php echo esc_attr( $item[1] ); ?>"
+                 style="width:100%;border-radius:12px;max-height:80vh;object-fit:contain;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-top:16px;">
+              <div>
+                <h3 style="color:#fff;margin:0 0 4px;"><?php echo esc_html( $item[1] ); ?></h3>
+                <p style="color:#94a3b8;margin:0;font-size:14px;"><?php echo esc_html( $item[2] ); ?></p>
+              </div>
+              <button onclick="document.getElementById('lb-s-<?php echo $si; ?>').style.display='none'"
+                      style="background:rgba(255,255,255,.15);border:none;color:#fff;font-size:24px;width:48px;height:48px;border-radius:50%;cursor:pointer;flex-shrink:0;">✕</button>
+            </div>
+          </div>
+        </div>
+      <?php endforeach; ?>
+    </div>
+  </div>
+
+  <!-- ══ Section 2: Circle CAA Events ════════════════════════════════ -->
+  <div>
+
+    <div style="display:flex;align-items:center;gap:16px;margin-bottom:32px;">
+      <div style="flex:1;height:2px;background:linear-gradient(to right,#16a34a,transparent);"></div>
+      <div style="text-align:center;">
+        <span style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#1a3a7a;display:block;">Circle CAA</span>
+        <h2 style="font-size:24px;font-weight:800;color:#0d2149;margin:6px 0 0;">Our Events &amp; Activities</h2>
+      </div>
+      <div style="flex:1;height:2px;background:linear-gradient(to left,#16a34a,transparent);"></div>
+    </div>
+
+    <div style="columns:3 300px;column-gap:16px;">
       <?php
       $gallery_items = array(
         array( 'event-01.jpg', 'Kavi Samelan & Poetry Evening', 'culture-arts', 'An evening of Hindi poetry, music and artistic expression celebrating Rajsamand\'s rich literary heritage.' ),
@@ -67,13 +130,13 @@ get_header(); ?>
         array( 'event-06.jpg', 'Wellness Camp & Yoga Drive', 'wellness', 'Free yoga sessions, health screenings and wellness workshops open to all community members.' ),
         array( 'event-07.jpg', 'Social Awareness Campaign', 'awareness', 'Community-wide campaigns on issues including gender equality, mental health, voter awareness and road safety.' ),
       );
+      $hc = array( '280px','340px','300px','320px','260px','350px','290px' );
       foreach ( $gallery_items as $idx => $gi ) :
-        $heights = array( '280px', '340px', '300px', '320px', '260px', '350px', '290px' );
-        $h = $heights[ $idx % count($heights) ];
+        $h = $hc[ $idx % count($hc) ];
       ?>
-        <div class="gallery-masonry-item" data-cat="<?php echo esc_attr( $gi[2] ); ?>"
+        <div data-cat="<?php echo esc_attr( $gi[2] ); ?>"
              style="break-inside:avoid;margin-bottom:16px;border-radius:16px;overflow:hidden;position:relative;cursor:pointer;"
-             onclick="document.getElementById('lightbox-<?php echo $idx; ?>').style.display='flex'">
+             onclick="document.getElementById('lb-c-<?php echo $idx; ?>').style.display='flex'">
           <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/events/' . $gi[0] ); ?>"
                alt="<?php echo esc_attr( $gi[1] ); ?>"
                style="width:100%;height:<?php echo $h; ?>;object-fit:cover;display:block;transition:transform .4s ease;"
@@ -84,9 +147,7 @@ get_header(); ?>
             <p style="color:#fff;font-size:14px;font-weight:700;margin:0;"><?php echo esc_html( $gi[1] ); ?></p>
           </div>
         </div>
-
-        <!-- Lightbox -->
-        <div id="lightbox-<?php echo $idx; ?>"
+        <div id="lb-c-<?php echo $idx; ?>"
              style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.92);align-items:center;justify-content:center;padding:24px;"
              onclick="this.style.display='none'">
           <div style="max-width:900px;width:100%;" onclick="event.stopPropagation()">
@@ -98,14 +159,14 @@ get_header(); ?>
                 <h3 style="color:#fff;margin:0 0 4px;"><?php echo esc_html( $gi[1] ); ?></h3>
                 <p style="color:#94a3b8;margin:0;font-size:14px;"><?php echo esc_html( $gi[3] ); ?></p>
               </div>
-              <button onclick="document.getElementById('lightbox-<?php echo $idx; ?>').style.display='none'"
+              <button onclick="document.getElementById('lb-c-<?php echo $idx; ?>').style.display='none'"
                       style="background:rgba(255,255,255,.15);border:none;color:#fff;font-size:24px;width:48px;height:48px;border-radius:50%;cursor:pointer;flex-shrink:0;">✕</button>
             </div>
           </div>
         </div>
-
       <?php endforeach; ?>
     </div>
+  </div>
 
   <?php endif; ?>
 
@@ -113,7 +174,7 @@ get_header(); ?>
   <?php if ( current_user_can('edit_posts') ) : ?>
     <div style="margin-top:48px;padding:32px;background:#fffbeb;border:2px dashed #fbbf24;border-radius:16px;text-align:center;">
       <p style="color:#92400e;margin:0 0 12px;font-weight:600;">📷 Admin Tip</p>
-      <p style="color:#78350f;margin:0 0 16px;">Add real Circle CAA photos by creating <strong>Gallery Album</strong> posts in the WordPress admin (Posts → Gallery Albums). Each album can have a featured image and title.</p>
+      <p style="color:#78350f;margin:0 0 16px;">Add real Circle CAA photos by creating <strong>Gallery Album</strong> posts in the WordPress admin. Each album can have a featured image and title.</p>
       <a href="<?php echo admin_url('post-new.php?post_type=gallery_album'); ?>" class="btn btn-primary" style="font-size:14px;padding:10px 24px;">Add Gallery Photos</a>
     </div>
   <?php endif; ?>
@@ -121,12 +182,11 @@ get_header(); ?>
 </div>
 
 <style>
-.gallery-filter-btn:hover {
-  background: #1a3a7a !important;
-  color: #fff !important;
-}
 @media (max-width: 768px) {
-  #gallery-grid { columns: 1 !important; }
+  div[style*="columns:3"] { columns: 1 !important; }
+}
+@media (max-width: 600px) {
+  div[style*="columns:3 280px"] { columns: 1 !important; }
 }
 </style>
 

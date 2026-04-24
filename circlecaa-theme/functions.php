@@ -104,6 +104,24 @@ function circlecaa_register_cpts() {
         'show_in_rest' => true,
     ) );
 
+    // Sponsors
+    register_post_type( 'sponsor', array(
+        'labels'      => array(
+            'name'               => __( 'Sponsors', 'circlecaa' ),
+            'singular_name'      => __( 'Sponsor', 'circlecaa' ),
+            'add_new_item'       => __( 'Add New Sponsor', 'circlecaa' ),
+            'edit_item'          => __( 'Edit Sponsor', 'circlecaa' ),
+            'all_items'          => __( 'All Sponsors', 'circlecaa' ),
+        ),
+        'public'      => true,
+        'supports'    => array( 'title', 'thumbnail', 'editor' ),
+        'menu_icon'   => 'dashicons-star-filled',
+        'has_archive' => false,
+        'rewrite'     => array( 'slug' => 'sponsors' ),
+        'show_in_rest' => true,
+        'menu_position' => 25,
+    ) );
+
     // Gallery Albums
     register_post_type( 'gallery_album', array(
         'labels'      => array(
@@ -326,6 +344,39 @@ function circlecaa_save_team_meta( $post_id ) {
     }
 }
 add_action( 'save_post_team_member', 'circlecaa_save_team_meta' );
+
+// ─── Sponsor Meta Box ─────────────────────────────────────────────
+function circlecaa_sponsor_meta_boxes() {
+    add_meta_box( 'sponsor_details', __( 'Sponsor Details', 'circlecaa' ), 'circlecaa_sponsor_meta_box_cb', 'sponsor', 'normal', 'high' );
+}
+add_action( 'add_meta_boxes', 'circlecaa_sponsor_meta_boxes' );
+
+function circlecaa_sponsor_meta_box_cb( $post ) {
+    wp_nonce_field( 'circlecaa_sponsor_meta', 'circlecaa_sponsor_nonce' );
+    $fields = array(
+        '_sponsor_link'     => 'Website URL (e.g. https://example.com)',
+        '_sponsor_place'    => 'Location / Place (e.g. Rajsamand, Rajasthan)',
+        '_sponsor_discount' => 'Discount / Offer for Circle CAA Members (e.g. 15% off on all services)',
+    );
+    echo '<p style="color:#555;margin-bottom:12px;">Set the sponsor logo by using the <strong>Featured Image</strong> box. Enter details below:</p>';
+    echo '<table class="form-table">';
+    foreach ( $fields as $key => $label ) {
+        $val = get_post_meta( $post->ID, $key, true );
+        echo "<tr><th><label for='{$key}'>{$label}</label></th>";
+        echo "<td><input type='text' id='{$key}' name='{$key}' value='" . esc_attr( $val ) . "' style='width:100%'></td></tr>";
+    }
+    echo '</table>';
+}
+
+function circlecaa_save_sponsor_meta( $post_id ) {
+    if ( ! isset( $_POST['circlecaa_sponsor_nonce'] ) || ! wp_verify_nonce( $_POST['circlecaa_sponsor_nonce'], 'circlecaa_sponsor_meta' ) ) return;
+    if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) return;
+    $keys = array( '_sponsor_link', '_sponsor_place', '_sponsor_discount' );
+    foreach ( $keys as $key ) {
+        if ( isset( $_POST[$key] ) ) update_post_meta( $post_id, $key, sanitize_text_field( $_POST[$key] ) );
+    }
+}
+add_action( 'save_post_sponsor', 'circlecaa_save_sponsor_meta' );
 
 // ─── Contact Form AJAX ─────────────────────────────────────────────
 function circlecaa_handle_contact() {
